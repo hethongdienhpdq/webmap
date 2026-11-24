@@ -1,0 +1,40 @@
+:root{font-family:Arial,system-ui,sans-serif;color:#182b3d}*{box-sizing:border-box}body{margin:0}header{height:70px;background:#102c48;color:#fff;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;gap:12px}header small{display:block;color:#b8d0e1;margin-top:6px}.actions{display:flex;align-items:center;gap:12px}.actions span{font-size:12px;color:#bcd0df}.layout{display:flex;height:calc(100vh - 70px)}aside{width:260px;flex-shrink:0;overflow:auto;padding:18px;background:#f5f8fb;border-right:1px solid #d8e0e7}h3{font-size:13px;letter-spacing:.6px;color:#36546b;margin:8px 0 12px}input:not([type=checkbox]){width:100%;padding:10px;border:1px solid #c7d2de;border-radius:8px}button,.upload{border:1px solid #ccd8e2;background:white;color:#163750;border-radius:8px;padding:9px 12px;cursor:pointer;font-weight:600}button:hover,.upload:hover{background:#e5f1fc}aside button,.upload{display:block;width:100%;margin:7px 0;text-align:left}aside label:not(.upload){display:block;margin:12px 0;font-size:14px}aside hr{border:0;border-top:1px solid #dce4eb;margin:20px 0}.station{padding:11px;border:1px solid #dce4eb;background:white;border-radius:9px;margin:8px 0;cursor:pointer}.station:hover{border-color:#1c83ba}.station small{display:block;color:#63798a;margin-top:5px}.danger{color:#b42318}main{flex:1;position:relative;min-width:0}#map{width:100%;height:100%;background:#d9e2e8}#hint{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:#102c48e8;color:white;padding:10px 16px;border-radius:10px;z-index:500;max-width:90%;font-size:13px;pointer-events:none}.modal{position:fixed;inset:0;background:#0718279e;display:grid;place-items:center;z-index:2000;padding:20px}.modal[hidden],[hidden]{display:none!important}.dialog{background:white;width:min(850px,96vw);max-height:88vh;overflow:auto;border-radius:14px;padding:20px;box-shadow:0 15px 50px #0005}.modalhead{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #dbe3ea;margin-bottom:16px}.modalhead h2{font-size:20px}.modalhead button{margin-left:15px}.choice{display:flex;gap:12px;flex-wrap:wrap}.choice button{flex:1;min-width:150px;padding:17px}.details{border-collapse:collapse;width:100%}.details td{padding:12px;border-bottom:1px solid #e0e6eb}.details td:first-child{font-weight:bold;width:35%}.note{font-size:13px;color:#63798a}.pin{background:#12344d;border:3px solid #fff;color:#fff;border-radius:50%;box-shadow:0 2px 8px #0007;text-align:center;line-height:28px;font-size:11px;font-weight:bold}.pin.high{background:#b72d43}.pin.mid{background:#d98a1b}.leaflet-container{cursor:grab}@media(max-width:700px){header{height:auto;min-height:70px}header strong{font-size:12px}.actions span{display:none}aside{width:165px;padding:9px}.layout{height:calc(100vh - 70px)}#hint{font-size:11px}}
+
+/* V2: chế độ chỉ tuyến cáp, sidebar thu gọn và khay ảnh dưới bản đồ */
+.layout aside{transition:width .28s ease,padding .28s ease;overflow-x:hidden}
+.layout.sidebar-collapsed aside{width:0;padding-left:0;padding-right:0;border:0}
+.floating-toggle{position:absolute;z-index:1100;top:12px;left:56px;padding:9px 12px;box-shadow:0 2px 12px #0003}
+.view-switch{position:absolute;z-index:1050;top:12px;right:14px;display:flex;gap:6px;background:#102c48e6;padding:5px;border-radius:10px}
+.view-switch button{font-size:12px;padding:9px}
+.view-switch button.active{background:#267bb0;color:#fff;border-color:#267bb0}
+#map.cable-only{background:#0b1b2a}
+.gallery{position:absolute;bottom:0;left:0;right:0;z-index:1050;background:#f7fafdeF;box-shadow:0 -8px 30px #0005;border-radius:18px 18px 0 0;padding:12px 18px;max-height:48%;overflow:auto;animation:slideUp .32s ease-out}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.gallery-head,.gallery-nav{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.gallery-head{margin-bottom:10px}.gallery-head button{margin-left:6px}
+.gallery-nav{margin-top:10px}
+#galleryContent{text-align:center;min-height:60px}
+#galleryContent img{max-height:24vh;max-width:100%;object-fit:contain;border-radius:8px}
+#galleryContent.all-photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+#galleryContent.all-photos img{width:100%;height:125px;object-fit:cover;cursor:pointer}
+.gallery .empty-photo{padding:18px;color:#63798a}
+#hint.gallery-visible{bottom:50%;}
+@media(max-width:700px){.view-switch{top:58px;right:8px}.view-switch button{font-size:10px;padding:7px}.gallery{max-height:55%}.floating-toggle{top:8px}}
+
+/* V2.1 */
+.station-icon{position:absolute;overflow:visible!important}.pin-label{position:absolute;top:2px;left:53px;white-space:nowrap;background:#102c48eb;color:white;font:bold 12px Arial;padding:7px 10px;border:1px solid #ffffff8a;border-radius:6px;pointer-events:none;box-shadow:0 2px 8px #0006}.pin-label.hidden-label{display:none}.station-icon:hover .pin-label{display:block!important}.label-choice{display:flex!important;align-items:center;justify-content:space-between;gap:6px;font-size:13px;margin:12px 0}.label-choice select{max-width:125px;padding:7px;border-radius:7px}.label-choice input[type=color]{width:58px;height:36px;border:0;background:transparent}.edit-row{display:flex;gap:6px}.edit-row button{flex:1;text-align:center}button:disabled{opacity:.45;cursor:not-allowed}
+
+/* V2.1.1: biểu tượng có kích thước cố định và neo đúng tại tâm trạm ở mọi mức zoom. */
+.station-icon{width:44px!important;height:44px!important;border:0!important;background:transparent!important}
+.station-icon .pin{width:44px;height:44px;display:flex;align-items:center;justify-content:center;line-height:1;box-sizing:border-box;border-radius:50%;font-size:11px}
+.station-icon .pin-label{top:6px;left:51px}
+
+.pin.low{background:#16815b}
+.route-flow{animation:route-flow 1s linear infinite;pointer-events:none}@keyframes route-flow{to{stroke-dashoffset:-25}}
+
+/* Fixed map anchor; independent label. */
+.leaflet-marker-icon.station-icon{position:absolute;width:12px!important;height:12px!important;overflow:visible!important}
+.station-icon .pin{width:12px;height:12px;border:2px solid white;box-shadow:0 0 3px #000;line-height:1}
+.station-icon .pin-label{top:-22px;left:19px;padding:4px 7px;font-size:11px}
+.station-icon .pin-label::before{content:"";position:absolute;right:100%;top:100%;width:17px;height:1px;background:white;transform-origin:right center;transform:rotate(-45deg);pointer-events:none}
+.station-icon:hover{z-index:10000!important}
