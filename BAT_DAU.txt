@@ -1,0 +1,10 @@
+HPDQ MAP V1.1 — THỬ NGHIỆM, CHƯA KIỂM THỬ FIREBASE THỰC TẾ
+1. Trên V1.0 đăng nhập quản trị, xuất JSON và giữ bản sao thư mục. Ngừng mọi chỉnh sửa V1.0.
+2. Firebase Authentication > Users > Add user: tạo email/mật khẩu dùng chung, sao chép UID.
+3. Giải nén V1.1 vào thư mục riêng. Sao chép firebase-config.js từ V1.0, thêm export const editorUid = 'UID thật'; giữ adminUid cũ.
+4. Firestore > Rules: dán firestore.rules mới, thay ADMIN_UID và EDITOR_UID bằng UID thật, Publish. Quy tắc này khóa ghi maps/main cũ.
+5. Mở Live Server, đăng nhập quản trị, xác nhận chuyển dữ liệu. Kiểm tra số lượng trạm/tuyến và vị trí so với JSON. maps/main vẫn được giữ nguyên.
+6. Mở cửa sổ ẩn danh, đăng nhập tài khoản vẽ. Vẽ hai tuyến khác nhau ở hai cửa sổ, kiểm tra cả hai tồn tại sau F5. Thử cùng sửa một tuyến, kiểm tra cảnh báo xung đột. Thử tài khoản vẽ không sửa hồ sơ/xóa dữ liệu. Chỉ triển khai sau khi đạt.
+7. Tài khoản vẽ có thể thêm trạm, di chuyển ghim, vẽ/sửa tuyến; không xóa hoặc sửa hồ sơ. Undo/redo của tài khoản vẽ chỉ dùng trong bản nháp. Đồng bộ tạm hoãn khi đang thao tác; thoát chế độ sửa để nhận thay đổi.
+8. Khi hoàn thành, sửa Rules function editor(){return false;} rồi Publish và vô hiệu hóa tài khoản vẽ.
+LƯU Ý: Rules cho phép đọc công khai và ảnh bản đồ là tài nguyên tĩnh. Không đưa lên hosting công khai nếu chưa được công ty duyệt. Không chia sẻ mật khẩu quản trị. Không dùng V1.0 sau chuyển đổi. Bản sửa lỗi lưu được giữ trong localStorage hpdq-v11-recovery, có thể xuất bằng DevTools. Chuyển đổi tự động tối đa 450 đối tượng, trong giới hạn kích thước transaction Firestore.

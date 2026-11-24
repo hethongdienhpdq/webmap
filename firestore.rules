@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function owner(){return request.auth != null && request.auth.uid == 'ADMIN_UID';}
+  function editor(){return request.auth != null && request.auth.uid == 'EDITOR_UID';}
+  function writer(){return owner() || editor();}
+  function valid(id){return request.resource.data.keys().hasOnly(['value','rev']) && request.resource.data.value is map && request.resource.data.value.id == id && request.resource.data.rev is int;}
+  match /maps/main {allow read: if owner(); allow write: if false;}
+  match /maps/v11 {allow read: if true; allow create: if owner() && request.resource.data.version == 11;}
+  match /stations/{id} {
+   allow read: if true;
+   allow create: if writer() && valid(id) && (owner() || request.resource.data.value.keys().hasOnly(['id','name','voltage','area','x','y']));
+   allow update: if writer() && valid(id) && (owner() || request.resource.data.value.diff(resource.data.value).affectedKeys().hasOnly(['x','y']));
+   allow delete: if owner();
+  }
+  match /routes/{id} {allow read: if true; allow create,update: if writer() && valid(id); allow delete: if owner();}
+  match /{document=**} {allow read,write: if false;}
+ }
+}
